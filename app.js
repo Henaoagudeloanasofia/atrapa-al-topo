@@ -9,7 +9,30 @@ let posiciontopo = null;
 function cuadradoazar() {
   cuadrado.forEach((nombredeclase) => {
     nombredeclase.classList.remove("topo");
-  })
+  });
 
-let posicionlazar = cuadrado[Math.floor (Math.random()*9)]
+  let posicionalazar = cuadrado[Math.floor(Math.random() * 9)];
+  posicionalazar.classList.add("topo");
+
+  posiciontopo = posicionalazar.id;
 }
+
+cuadrado.forEach((identificador) => {
+  identificador.addEventListener("click", () => {
+    if (identificador.id === posiciontopo) {
+      resultado = resultado + 1;
+      puntaje.textContent = resultado;
+      posicionalazar = null;
+    }
+  });
+});
+function movertopo() {
+  tiempoactual--;
+  tiempofaltante.textContent = tiempoactual;
+  if (tiempoactual === 0) {
+    clearInterval(idtiempo);
+    clearInterval(tiempotopo);
+    alert("se acabo el tiempo, tu puntaje es" + resultado + "topos atrapados");
+  }
+}
+let idtiempo = setInterval(cuentaregresiva, 1000);
